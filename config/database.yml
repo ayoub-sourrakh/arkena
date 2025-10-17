@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  username: postgres
+  password: password
+  host: db
+  pool: 5
+
+development:
+  <<: *default
+  database: arkena_development
+
+test:
+  <<: *default
+  database: arkena_test
+
+production:
+  <<: *default
+  database: arkena_production
+  username: postgres
+  password: <%= ENV['POSTGRES_PASSWORD'] %>

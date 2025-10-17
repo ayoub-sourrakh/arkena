@@ -1,0 +1,6 @@
+/log/*
+/tmp/*
+/vendor/bundle
+/db/*.sqlite3
+/.env
+/node_modules
