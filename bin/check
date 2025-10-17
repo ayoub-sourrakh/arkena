@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -e
+
+echo "🔍 Running Rubocop..."
+bundle exec rubocop
+
+echo "🛡️  Running Brakeman..."
+bundle exec brakeman -q -w2
+
+echo "🧪 Running RSpec..."
+bundle exec rspec

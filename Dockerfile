@@ -1,23 +1,27 @@
 FROM ruby:3.3
 
-# Installe les dépendances système nécessaires à Rails
+# Installe dépendances système
 RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
 
-# Installe Bundler (gestionnaire de gems Ruby)
-RUN gem install bundler
+# Crée un utilisateur non-root avec même UID/GID que ton utilisateur WSL
+ARG UID=1000
+ARG GID=1000
+RUN groupadd -g $GID appuser && useradd -m -u $UID -g $GID appuser
 
-# Définit le dossier de travail dans le conteneur
 WORKDIR /app
 
-# Copie les fichiers Gemfile et Gemfile.lock pour installer les gems
+# Copie Gemfile et installe les gems
 COPY Gemfile* ./
 RUN bundle install
 
-# Copie le reste du code de l’application dans le conteneur
+# Copie le reste du projet
 COPY . .
 
-# Expose le port 3000 (celui utilisé par Rails)
-EXPOSE 3000
+# Change le propriétaire des fichiers
+RUN chown -R appuser:appuser /app
 
-# Commande exécutée au démarrage du conteneur
+# Passe sur l'utilisateur non-root
+USER appuser
+
+EXPOSE 3000
 CMD ["bin/rails", "server", "-b", "0.0.0.0"]
