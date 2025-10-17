@@ -364,7 +364,7 @@ DEPENDENCIES
   rspec-rails (~> 8.0)
   rubocop
   rubocop-rails
-  rubocop-rails-omakase
+  rubocop-rails-omakase (~> 1.1)
   selenium-webdriver
   sprockets-rails
   stimulus-rails
