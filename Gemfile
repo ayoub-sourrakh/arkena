@@ -7,7 +7,7 @@ gem 'importmap-rails'               # JS sans bundler
 gem 'jbuilder'                      # JSON builder
 gem 'pg', '~> 1.1'                  # PostgreSQL
 gem 'puma', '>= 5.0'                # Serveur web
-gem 'rails', '~> 8.0.3'
+gem 'rails', '~> 8.1.0'
 gem 'sprockets-rails'               # Asset pipeline
 gem 'stimulus-rails'                # Hotwire (Stimulus)
 gem 'turbo-rails'                   # Hotwire (Turbo)
